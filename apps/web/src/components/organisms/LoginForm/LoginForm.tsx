@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Input } from '../../atoms/Input/Input'
 import { Button } from '../../atoms/Button/Button'
 import { Checkbox } from '../../atoms/Checkbox/Checkbox'
+import { Input } from '../../atoms/Input/Input'
 import { SocialLoginGroup } from '../../molecules/SocialLoginGroup/SocialLoginGroup'
 
 interface LoginFormProps {
@@ -14,11 +14,9 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onLoginSubmit }) => {
   const [password, setPassword] = useState('')
   const [remember, setRemember] = useState(false)
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (onLoginSubmit) {
-      onLoginSubmit({ emailOrUser, remember })
-    }
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault()
+    onLoginSubmit?.({ emailOrUser, remember })
   }
 
   return (
@@ -38,7 +36,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onLoginSubmit }) => {
         id="emailOrUser"
         placeholder="usuario123"
         value={emailOrUser}
-        onChange={(e) => setEmailOrUser(e.target.value)}
+        onChange={(event) => setEmailOrUser(event.target.value)}
         required
       />
 
@@ -48,7 +46,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onLoginSubmit }) => {
         type="password"
         placeholder="******"
         value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        onChange={(event) => setPassword(event.target.value)}
         required
       />
 
@@ -57,7 +55,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onLoginSubmit }) => {
           label="Lembrar-me"
           id="remember"
           checked={remember}
-          onChange={(e) => setRemember(e.target.checked)}
+          onChange={(event) => setRemember(event.target.checked)}
           className="mb-0"
         />
         <Button variant="link" type="button" className="text-sm font-medium">

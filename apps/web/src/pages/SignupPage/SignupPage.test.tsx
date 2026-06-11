@@ -1,18 +1,19 @@
 import { render, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { describe, expect, it } from 'vitest'
-import { LoginPage } from './LoginPage'
+import { SignupPage } from './SignupPage'
 
-describe('LoginPage Component', () => {
-  it('should render the entire login page', () => {
+describe('SignupPage Component', () => {
+  it('should render the entire signup page', () => {
     render(
       <MemoryRouter>
-        <LoginPage />
+        <SignupPage />
       </MemoryRouter>
     )
 
-    expect(screen.getByRole('heading', { name: 'Login' })).toBeInTheDocument()
-    expect(screen.getByLabelText('Email ou usuário')).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'Cadastro' })).toBeInTheDocument()
+    expect(screen.getByLabelText('Nome')).toBeInTheDocument()
+    expect(screen.getByLabelText('E-mail')).toBeInTheDocument()
     expect(screen.getByLabelText('Senha')).toBeInTheDocument()
 
     const bannerImg = screen.getByRole('img', {
