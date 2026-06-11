@@ -30,7 +30,7 @@ export const SignupForm: React.FC<SignupFormProps> = ({ onSignupSubmit }) => {
       className="w-full max-w-[346px] flex flex-col justify-center text-left"
     >
       <div className="mb-8">
-        <h1 className="text-[2rem] leading-tight font-extrabold text-white font-outfit">
+        <h1 className="text-3xl leading-tight font-extrabold text-white font-outfit">
           Cadastro
         </h1>
         <p className="text-slate-400 text-base mt-4">

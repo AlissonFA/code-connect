@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import { describe, it, expect } from 'vitest'
+import { axe } from 'vitest-axe'
 import { AuthTemplate } from './AuthTemplate'
 
 describe('AuthTemplate Template', () => {
@@ -17,4 +18,16 @@ describe('AuthTemplate Template', () => {
     expect(screen.getByTestId('form-slot')).toBeInTheDocument()
     expect(screen.getByText('Form Content')).toBeInTheDocument()
   })
+
+  it('should have no accessibility violations', async () => {
+    const { container } = render(
+      <AuthTemplate
+        banner={<div>Banner Content</div>}
+        form={<div>Form Content</div>}
+      />
+    )
+    const results = await axe(container)
+    expect(results).toHaveNoViolations()
+  })
 })
+

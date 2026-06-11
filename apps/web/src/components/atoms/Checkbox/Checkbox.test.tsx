@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, it, expect, vi } from 'vitest'
+import { axe } from 'vitest-axe'
 import { Checkbox } from './Checkbox'
 
 describe('Checkbox Component', () => {
@@ -21,4 +22,11 @@ describe('Checkbox Component', () => {
     await userEvent.click(checkbox)
     expect(handleChange).toHaveBeenCalledTimes(1)
   })
+
+  it('should have no accessibility violations', async () => {
+    const { container } = render(<Checkbox label="Remember me" id="remember" />)
+    const results = await axe(container)
+    expect(results).toHaveNoViolations()
+  })
 })
+

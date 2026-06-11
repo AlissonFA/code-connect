@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { describe, expect, it } from 'vitest'
+import { axe } from 'vitest-axe'
 import { SignupPage } from './SignupPage'
 
 describe('SignupPage Component', () => {
@@ -22,4 +23,15 @@ describe('SignupPage Component', () => {
     expect(bannerImg).toBeInTheDocument()
     expect(bannerImg).toHaveAttribute('src', '/login-banner.png')
   })
+
+  it('should have no accessibility violations', async () => {
+    const { container } = render(
+      <MemoryRouter>
+        <SignupPage />
+      </MemoryRouter>
+    )
+    const results = await axe(container)
+    expect(results).toHaveNoViolations()
+  })
 })
+

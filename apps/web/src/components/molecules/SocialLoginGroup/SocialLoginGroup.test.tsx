@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, it, expect, vi } from 'vitest'
+import { axe } from 'vitest-axe'
 import { SocialLoginGroup } from './SocialLoginGroup'
 
 describe('SocialLoginGroup Molecule', () => {
@@ -23,4 +24,11 @@ describe('SocialLoginGroup Molecule', () => {
     expect(handleGithub).toHaveBeenCalledTimes(1)
     expect(handleGoogle).toHaveBeenCalledTimes(1)
   })
+
+  it('should have no accessibility violations', async () => {
+    const { container } = render(<SocialLoginGroup />)
+    const results = await axe(container)
+    expect(results).toHaveNoViolations()
+  })
 })
+

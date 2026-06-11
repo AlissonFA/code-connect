@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import { describe, it, expect } from 'vitest'
+import { axe } from 'vitest-axe'
 import { AuthBanner } from './AuthBanner'
 
 describe('AuthBanner Organism', () => {
@@ -10,4 +11,11 @@ describe('AuthBanner Organism', () => {
     expect(img).toBeInTheDocument()
     expect(img).toHaveAttribute('src', '/login-banner.png')
   })
+
+  it('should have no accessibility violations', async () => {
+    const { container } = render(<AuthBanner imageSrc="/login-banner.png" alt="Login Banner" />)
+    const results = await axe(container)
+    expect(results).toHaveNoViolations()
+  })
 })
+

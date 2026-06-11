@@ -50,7 +50,10 @@ Sempre prefira executar os scripts a partir da raiz do monorepo utilizando os co
   - **Templates**: Estrutura de layout de página que define o posicionamento dos componentes.
   - **Pages**: Telas reais onde os templates são preenchidos com dados reais e o estado é gerenciado.
 - **Estilização (TailwindCSS)**: Use TailwindCSS de forma consistente para estilização, mantendo a estética visual rica do Antigravity.
+  - **Tamanhos e Dimensões**: Prefira utilizar os tokens de tamanhos nativos e mais próximos do Tailwind (ex.: `text-3xl`, `p-4`) em vez de definir valores arbitrários customizados (`text-[2rem]`, `p-[17px]`).
+  - **Cores e Paleta**: Não utilize cores hexadecimais inline ou arbitrárias em classes Tailwind (ex.: `text-[#63F57E]`). Em vez disso, estenda o tema do Tailwind na folha de estilos principal (diretiva `@theme` do Tailwind v4) e configure as cores na paleta de cores oficial do projeto.
 - **Cobertura de Testes**: Todo componente criado deve ter um arquivo de teste cobrindo o seu uso essencial.
+
 
 ### 2. Backend ([apps/api](file:///c:/Dev/02-Alura/AI-Native/CodeConnect/apps/api))
 - **Princípios REST**: A API deve ser estritamente aderente aos princípios REST:

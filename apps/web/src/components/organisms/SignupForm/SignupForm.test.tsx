@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter } from 'react-router-dom'
 import { describe, expect, it, vi } from 'vitest'
+import { axe } from 'vitest-axe'
 import { SignupForm } from './SignupForm'
 
 describe('SignupForm Organism', () => {
@@ -41,4 +42,15 @@ describe('SignupForm Organism', () => {
       password: 'secret123',
     })
   })
+
+  it('should have no accessibility violations', async () => {
+    const { container } = render(
+      <MemoryRouter>
+        <SignupForm />
+      </MemoryRouter>
+    )
+    const results = await axe(container)
+    expect(results).toHaveNoViolations()
+  })
 })
+

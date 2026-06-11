@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, it, expect, vi } from 'vitest'
+import { axe } from 'vitest-axe'
 import { Input } from './Input'
 
 describe('Input Component', () => {
@@ -20,4 +21,11 @@ describe('Input Component', () => {
     
     expect(handleChange).toHaveBeenCalledTimes(5)
   })
+
+  it('should have no accessibility violations', async () => {
+    const { container } = render(<Input label="Test Label" id="test-input" />)
+    const results = await axe(container)
+    expect(results).toHaveNoViolations()
+  })
 })
+

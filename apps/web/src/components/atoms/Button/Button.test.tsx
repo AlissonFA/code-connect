@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, it, expect, vi } from 'vitest'
+import { axe } from 'vitest-axe'
 import { Button } from './Button'
 
 describe('Button Component', () => {
@@ -31,4 +32,11 @@ describe('Button Component', () => {
     expect(button).toHaveClass('text-codeconnect-green')
     expect(button).toHaveClass('underline')
   })
+
+  it('should have no accessibility violations', async () => {
+    const { container } = render(<Button>Click me</Button>)
+    const results = await axe(container)
+    expect(results).toHaveNoViolations()
+  })
 })
+
