@@ -3,3 +3,8 @@ node_modules/
 *.log
 .vscode/
 .idea/
+
+# Environment variables
+.env
+.env.*
+!.env.example
